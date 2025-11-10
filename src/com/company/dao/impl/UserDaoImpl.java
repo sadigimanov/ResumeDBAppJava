@@ -40,8 +40,8 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
                     + "LEFT JOIN nationality c ON c.id = u.birthplace_id");
             ResultSet rs = stmt.getResultSet();
 
-
             while (rs.next()) {
+
                 User u = getUser(rs);
                 result.add(u);
             }
