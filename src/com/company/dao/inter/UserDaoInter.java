@@ -8,5 +8,6 @@ public interface UserDaoInter {        // Dao - Data Access Object- bir basa dat
     public List<User> getAll();
     public User getById(int id);
     public boolean updateUser(User u);
+    public boolean addUser(User u);
     public boolean removeUser(int id);
 }

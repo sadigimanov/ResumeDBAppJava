@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ResumeDBApp.iml" filepath="$PROJECT_DIR$/ResumeDBApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ResumeDesktopApp/ResumeDesktopApp.iml" filepath="$PROJECT_DIR$/../ResumeDesktopApp/ResumeDesktopApp.iml" />
     </modules>
   </component>
 </project>
