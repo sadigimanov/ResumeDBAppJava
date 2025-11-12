@@ -1,6 +1,6 @@
 package com.company.dao.impl;
 
-import com.company.bean.Nationality;
+import com.company.bean.Country;
 import com.company.bean.User;
 import com.company.dao.inter.AbstractDao;
 import com.company.dao.inter.UserDaoInter;
@@ -22,8 +22,8 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
         String nationalityStr = rs.getString("nationality");
         String birthplaceStr = rs.getString("birthplace");
         Date birthdate = rs.getDate("birthdate");
-        Nationality nationality = new Nationality(nationalityId, nationalityStr, null);
-        Nationality birthplace = new Nationality(birthplaceId, birthplaceStr, null);
+        Country nationality = new Country(nationalityId, null, nationalityStr);
+        Country birthplace = new Country(birthplaceId, birthplaceStr, null);
 
         return new User(id, name, surname, email, phone,birthdate, nationality, birthplace);
     }
@@ -33,11 +33,11 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
         try (Connection c = connect()) {
             Statement stmt = c.createStatement();
             stmt.execute("SELECT u.*, "
-                    + "n.name AS nationality, "
+                    + "n.nationality, "
                     + "c.name AS birthplace "
                     + "FROM user u "
-                    + "LEFT JOIN nationality n ON n.id = u.nationality_id "
-                    + "LEFT JOIN nationality c ON c.id = u.birthplace_id");
+                    + "LEFT JOIN country n ON n.id = u.nationality_id "
+                    + "LEFT JOIN country c ON c.id = u.birthplace_id");
             ResultSet rs = stmt.getResultSet();
 
             while (rs.next()) {
@@ -58,11 +58,11 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
         try (Connection c = connect()) {
             Statement stmt = c.createStatement();
             stmt.execute("SELECT u.*, "
-                            + "n.name AS nationality, "
+                            + "n.nationality AS nationality, "
                             + "c.name AS birthplace "
                             + "FROM user u "
-                            + "LEFT JOIN nationality n ON n.id = u.nationality_id "
-                            + "LEFT JOIN nationality c ON c.id = u.birthplace_id where u.id = " + userId);
+                            + "LEFT JOIN country n ON n.id = u.nationality_id "
+                            + "LEFT JOIN country c ON c.id = u.birthplace_id where u.id = " + userId);
             ResultSet rs = stmt.getResultSet();
 
             while (rs.next()) {
